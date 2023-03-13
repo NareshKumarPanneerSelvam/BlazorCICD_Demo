@@ -26,8 +26,8 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'syncdevoebas - Web Deploy'
-          slot-name: 'production'
+          app-name: 'syncdevoebas'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ./app.zip
 
