@@ -51,3 +51,8 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
           package: .
+          
+      - name: Delete artifact after successful deployment
+        uses: actions/delete-artifact@v2
+        with:
+          name: .net-app
