@@ -52,7 +52,11 @@ jobs:
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
           package: .
           
+      - name: Install delete-artifact action
+        uses: dawidd6/action-delete-artifact@v3
+        
       - name: Delete artifact after successful deployment
-        uses: actions/delete-artifact@v2
+        uses: dawidd6/action-delete-artifact@v3
         with:
           name: .net-app
+        if: success()
