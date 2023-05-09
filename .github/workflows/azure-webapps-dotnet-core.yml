@@ -64,12 +64,13 @@ jobs:
       - name: Delete artifact
         uses: actions/github-script@v4
         with:
-          async script: |
-            const artifactId = ${{ steps.download-artifact.outputs.artifact_id }};
-            const github = require('@actions/github');
-            const octokit = new github.GitHub('${{ secrets.GITHUB_TOKEN }}');
-            await octokit.actions.deleteArtifact({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              artifact_id: artifactId
-            });
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            script: |
+              const artifactId = ${{ steps.download-artifact.outputs.artifact_id }};
+              const github = require('@actions/github');
+              const octokit = new github.GitHub(context.repo.token);
+              await octokit.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: artifactId
+              });
