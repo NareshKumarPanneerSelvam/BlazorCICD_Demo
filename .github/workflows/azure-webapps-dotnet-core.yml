@@ -64,7 +64,7 @@ jobs:
       - name: Delete artifact
         uses: actions/github-script@v4
         with:
-          script: |
+          async script: |
             const artifactId = ${{ steps.download-artifact.outputs.artifact_id }};
             const github = require('@actions/github');
             const octokit = new github.GitHub('${{ secrets.GITHUB_TOKEN }}');
